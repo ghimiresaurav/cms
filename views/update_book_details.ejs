@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Details</title>
+    <link rel="stylesheet" href="./assets/cms-style.css">
+    <style>
+        .btns{
+            height: 10%;
+            width: 50%;
+            font-size: 1.1rem;
+        }
+        input{
+            font-size: 1.1rem;
+            width: 80%;
+            height: 5%;
+        }
+        #response{
+            font-size: large;
+            color: white;
+            z-index: 9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Update Details of an existing book</h1>
+    </header>
+    <div id="wrapper">
+        <div id="container">
+            <div id="response" >adfadf</div>
+            <form id="add-book-form">
+                <input type="text" id="title" placeholder=" Current Title">
+                <input type="text" id="up-title" placeholder=" Updated Title">
+                <input type="text" id="author" placeholder="Updated Author">
+                <input type="text" id="category" placeholder=" Updated Category">
+                <input type="text" id="genre" placeholder=" Updated Genre">
+                <input type="number" id="quantity" placeholder=" Updated Quantity" onkeypress="return event.charCode >=48" min="1">
+                <button type="submit" class="btns" onclick="updateDetails(event)">Update Details</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const updateDetails = e => {
+            e.preventDefault();
+            // const response = document.getElementById('response');
+            // response.innerText = `For the book id, go back to search book and find the book id`;
+            // setTimeout(response.innerText = "", 5000);
+
+            const title = document.getElementById('title').value;
+            const updatedTitle = document.getElementById('up-title').value;
+            const updatedAuthor = document.getElementById('author').value;
+            const updatedCategory = document.getElementById('category').value;
+            const updatedGenre = document.getElementById('genre').value;
+            const updatedQuantity = document.getElementById('quantity').value;
+
+            const everyFieldIsFilled = title && updatedTitle && updatedAuthor && updatedCategory && updatedGenre && updatedQuantity;
+
+            if(everyFieldIsFilled){
+                const book = {
+                    title,
+                    updatedTitle,
+                    updatedAuthor,
+                    updatedCategory,
+                    updatedGenre, 
+                    updatedQuantity
+                };
+                const options = {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/JSON'
+                    },
+                    body: JSON.stringify(book)
+                };
+                fetch('/update_book_details', options);
+                displayMessage("Book detail updated successfully!");
+                
+                document.getElementById('title').value = "";
+                document.getElementById('up-title').value = "";
+                document.getElementById('author').value = "";
+                document.getElementById('category').value = "";
+                document.getElementById('genre').value = "";
+                document.getElementById('quantity').value = "";
+            }
+            else               
+                displayMessage("Please fill in all the input fields to proceed");
+        }
+
+        const displayMessage = messaage => {
+            const response = document.getElementById('response');
+            response.innerHTML = `<strong>P${message}</strong>`;        
+            setTimeout(() => {
+                response.innerHTML = "";
+            }, 3000);
+        }
+
+        
+    </script>
+</body>
+</html>

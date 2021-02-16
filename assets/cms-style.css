@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    background-color: #000;
+    color: #FFF;
+}
+
+body{
+    /* background-color: lavender; */
+    overflow: hidden;
+}
+
+header{
+    position: absolute;
+    height: 8vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    color: rgb(255, 102, 0);
+}
+
+#wrapper{
+    position: absolute;
+    top: 8vh;
+    width: 100vw;
+    height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container{
+    height: 95%;
+    width: 30%;
+    /* background-color: lavender; */
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btns{
+    border: 2px solid darkcyan;
+    text-align: center;
+    transition: 350ms;
+    cursor: pointer;
+}
+
+.btns a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.btns:hover{
+    color: rgb(255, 102, 0);
+    border: 2px solid darkorange;
+    box-shadow: 3px 3px 10px darkorange;
+}
+
+
+input{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-bottom:2px solid cyan;
+    transition: 300ms;
+}
+
+input:focus{
+    border-bottom: 2px solid rgb(255, 94, 0);
+}
+
+::placeholder{
+    color: rgba(255, 255, 255, 0.616);
+}
+
+
+#add-book-form{
+    height: 100%;
+    width: 100%;
+    /* background-color: darkslategrey; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#response{
+    height: 30px;
+    width: auto;
+    text-decoration: underline rgb(255, 102, 0);
+}
+
+#search-book-form{
+    position: absolute;
+    top: 5vh;
+    left: 70vw;
+    height: 50px;
+    width: 25vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table{
+    width: 90vw;
+    background-color: darkorange;
+    position: absolute;
+    text-align: center;
+}
+
+#view-book-table{
+    margin-top: 100px;
+}
+
+thead{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+td{
+    height: 45px
+}
+
+#view-all-books-table{
+    margin-top: 20px;
+}

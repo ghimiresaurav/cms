@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+    <link rel="stylesheet" href="./assets/cms-style.css">
+    <style>
+        .btns{
+            height: 10%;
+            width: 50%;
+            font-size: 1.1rem;
+        }
+        input{
+            font-size: 1.1rem;
+            width: 80%;
+            height: 5%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Add a book</h1>
+    </header>
+    <div id="wrapper">
+        <div id="container">
+            <div id="response"></div>
+            <form id="add-book-form" >
+                <input type="text" name="title" id="title" placeholder=" Title">
+                <input type="text" name="author" id="author" placeholder=" Author">
+                <input type="text" name="category" id="category" placeholder=" Category">
+                <input type="text" name="genre" id="genre" placeholder=" Genre">
+                <input type="number" name="quantity" id="quantity" placeholder=" Quantity" onkeypress="return event.charCode >=48" min="1">
+                <button type="submit" class="btns" onclick="addBook(event)">Add Book</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const addBook = e => {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const category = document.getElementById('category').value;
+            const genre = document.getElementById('genre').value;
+            const quantity = document.getElementById('quantity').value;
+
+            const everyFieldIsFilled = title && author && category && genre && quantity;
+
+            if(everyFieldIsFilled){
+                const book = {
+                    title,
+                    author,
+                    category,
+                    genre, 
+                    quantity
+                };
+                const options = {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/JSON'
+                    },
+                    body: JSON.stringify(book)
+                };
+                fetch('/add_book', options);
+                displayMessage("Book added successfully!");
+                
+                document.getElementById('title').value = "";
+                document.getElementById('author').value = "";
+                document.getElementById('category').value = "";
+                document.getElementById('genre').value = "";
+                document.getElementById('quantity').value = "";
+            }
+            else
+                displayMessage("Please fill in all the input fields to proceed");
+        }
+
+        const displayMessage = messaage => {
+            const response = document.getElementById('response');
+            response.innerHTML = `<strong>P${message}</strong>`;        
+            setTimeout(() => {
+                response.innerHTML = "";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

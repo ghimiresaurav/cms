@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bookshop</title>
+    <link rel="stylesheet" href="./assets/cms-style.css">
+    <style>        
+        .btns{
+            height: 70%;
+            width: 22%;
+            font-size: 1.1rem;
+            margin-left: 20px;
+        }
+        input{
+            font-size: 1.1rem;
+            width: 78%;
+        }
+        #wrapper{
+            align-items: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Search a book</h1>
+    </header>
+    <div id="wrapper">
+        <form id="search-book-form">
+            <input type="text" id="title" placeholder=" Title">
+            <button type="submit" class="btns" onclick="searchBook(event)">Search</button>
+        </form>
+        <table id="view-book-table">
+            <thead>
+                <td>Book id</td>
+                <td>Title</td>
+                <td>Author</td>
+                <td>Category</td>
+                <td>Genre</td>
+                <td>In Stock</td>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>6027f127ae130027b17ea029</td>
+                    <td>The Alchemist</td>
+                    <td>Paulo Coelho</td>
+                    <td>Novel</td>
+                    <td>Quest, Drama, Adventure</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>6027f127ae130027b17ea029</td>
+                    <td>The Alchemist</td>
+                    <td>Paulo Coelho</td>
+                    <td>Novel</td>
+                    <td>Quest, Drama, Adventure</td>
+                    <td>25</td>
+                </tr>
+                    <td>6027f127ae130027b17ea029</td>
+                    <td>The Alchemist</td>
+                    <td>Paulo Coelho</td>
+                    <td>Novel</td>
+                    <td>Quest, Drama, Adventure</td>
+                    <td>25</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const searchBook = e => {          
+            e.preventDefault();  
+            const title = document.getElementById('title').value;    
+            if(title){
+                const book = {
+                    title
+                };
+                const options = {
+                        method: 'POST', 
+                        headers: {
+                            'Content-Type': 'application/JSON'
+                        },
+                        body: JSON.stringify(book)
+                };
+                fetch('/search_book', options);
+            }
+            else
+                displayMessage("Please fill in the input field to search");
+        }
+
+        const displayMessage = messaage => {
+            const response = document.getElementById('response');
+            response.innerHTML = `<strong>P${message}</strong>`;        
+            setTimeout(() => {
+                response.innerHTML = "";
+            }, 3000);
+        }
+
+    </script>
+</body>
+</html>
