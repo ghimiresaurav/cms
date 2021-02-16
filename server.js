@@ -78,46 +78,6 @@ app.post('/search_book', (req, res) => {
 })
 
 app.get('/view_books', (req, res) => {
-    mongoClient.connect(url, options, (err, client) => {
-        if (err) throw err;
-        const db = client.db('bookshop');
-        db.collection('product').find().toArray((err, result) => {
-            if (err) throw err;
-            result.forEach(data => console.log(chalk.green(data.title)));
-            const a = document.getElementById('view-all-books-table');
-            console.log(a);
-            let table = `<table><thead>
-                            <td>Title</td>
-                            <td>Author</td>
-                            <td>Category</td>
-                            <td>Genre</td>
-                            <td>In Stock</td>
-                            </thead><tbody>`;     
-            for(let i in result){
-                const row = `<tr>
-                            <td>${result[i].title}</td>
-                            <td>${result[i].author}</td>
-                            <td>${result[i].category}</td>
-                            <td>${result[i].genre}</td>
-                            <td>${result[i].quantity}</td>
-                            </tr>`
-                table += row;
-            }
-            table += `</tbody></table>`;
-            // res.render(table);
-            const options = {
-                method: 'POST', 
-                headers: {
-                    'Content-Type': 'application/JSON'
-                },
-                body: JSON.stringify(result)
-            };
-
-            fetch('/get_books', options);
-
-            client.close();
-        })
-    })
     res.render('view_books.ejs');
 })
 

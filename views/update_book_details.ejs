@@ -30,7 +30,7 @@
     </header>
     <div id="wrapper">
         <div id="container">
-            <div id="response" >adfadf</div>
+            <div id="response"></div>
             <form id="add-book-form">
                 <input type="text" id="title" placeholder=" Current Title">
                 <input type="text" id="up-title" placeholder=" Updated Title">
@@ -45,9 +45,6 @@
     <script>
         const updateDetails = e => {
             e.preventDefault();
-            // const response = document.getElementById('response');
-            // response.innerText = `For the book id, go back to search book and find the book id`;
-            // setTimeout(response.innerText = "", 5000);
 
             const title = document.getElementById('title').value;
             const updatedTitle = document.getElementById('up-title').value;
@@ -88,9 +85,9 @@
                 displayMessage("Please fill in all the input fields to proceed");
         }
 
-        const displayMessage = messaage => {
+        const displayMessage = message => {
             const response = document.getElementById('response');
-            response.innerHTML = `<strong>P${message}</strong>`;        
+            response.innerHTML = `<strong>${message}</strong>`;        
             setTimeout(() => {
                 response.innerHTML = "";
             }, 3000);

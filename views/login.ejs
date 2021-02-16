@@ -27,7 +27,7 @@
     </header>
     <div id="wrapper">
         <div id="container">
-            <div id="response">asdfasdf</div>
+            <div id="response"></div>
             <form id="add-book-form">
                 <input type="text" id="username" placeholder=" Username">
                 <input type="password" id="password" placeholder=" Password">
@@ -62,9 +62,9 @@
                 displayMessage("Please fill in all the input fields to proceed"); 
         }
 
-        const displayMessage = messaage => {
+        const displayMessage = message => {
             const response = document.getElementById('response');
-            response.innerHTML = `<strong>P${message}</strong>`;        
+            response.innerHTML = `<strong>${message}</strong>`;        
             setTimeout(() => {
                 response.innerHTML = "";
             }, 3000);

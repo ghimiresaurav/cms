@@ -25,7 +25,7 @@
     </header>
     <div id="wrapper">
         <div id="container">
-            <div id="response">adsfsad</div>
+            <div id="response"></div>
             <form id="add-book-form">
                 <input type="text" id="title" placeholder=" Book Title">
                 <button type="submit" class="btns" onclick="removeBook(event)">Remove Book</button>
@@ -48,15 +48,15 @@
                         body: JSON.stringify(book)
                 };
                 fetch('/remove_book', options);
-                displayMessage('Book Rmoved Successfully');
+                displayMessage('Book Removed Successfully');
             }
             else
                 displayMessage("Please fill in the input field to proceed");
         }
 
-        const displayMessage = messaage => {
+        const displayMessage = message => {
             const response = document.getElementById('response');
-            response.innerHTML = `<strong>P${message}</strong>`;        
+            response.innerHTML = `<strong>${message}</strong>`;        
             setTimeout(() => {
                 response.innerHTML = "";
             }, 3000);

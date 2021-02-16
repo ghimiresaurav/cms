@@ -48,6 +48,14 @@
             const everyFieldIsFilled = title && author && category && genre && quantity;
 
             if(everyFieldIsFilled){
+                displayMessage("Book added successfully!");
+                
+                document.getElementById('title').value = "";
+                document.getElementById('author').value = "";
+                document.getElementById('category').value = "";
+                document.getElementById('genre').value = "";
+                document.getElementById('quantity').value = "";
+                
                 const book = {
                     title,
                     author,
@@ -62,22 +70,16 @@
                     },
                     body: JSON.stringify(book)
                 };
-                fetch('/add_book', options);
-                displayMessage("Book added successfully!");
                 
-                document.getElementById('title').value = "";
-                document.getElementById('author').value = "";
-                document.getElementById('category').value = "";
-                document.getElementById('genre').value = "";
-                document.getElementById('quantity').value = "";
+                fetch('/add_book', options);
             }
             else
                 displayMessage("Please fill in all the input fields to proceed");
         }
 
-        const displayMessage = messaage => {
+        const displayMessage = message => {
             const response = document.getElementById('response');
-            response.innerHTML = `<strong>P${message}</strong>`;        
+            response.innerHTML = `<strong>${message}</strong>`;        
             setTimeout(() => {
                 response.innerHTML = "";
             }, 3000);
